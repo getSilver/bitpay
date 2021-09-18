@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Post on Bitpay</title>
+    <link>https://getsilver.github.io/bitpay/post/</link>
+    <description>Recent content in Post on Bitpay</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 18 Sep 2020 10:37:46 +0000</lastBuildDate><atom:link href="https://getsilver.github.io/bitpay/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>交易文档</title>
+      <link>https://getsilver.github.io/bitpay/post/Trade/</link>
+      <pubDate>Fri, 18 Sep 2020 10:37:46 +0000</pubDate>
+      
+      <guid>https://getsilver.github.io/bitpay/post/Trade/</guid>
+      <description>请求地址： https://www.mercadosuperfast.com/Pay.html
+  请求类型： POST
+  请求参数：
+     变量名称 参数名称 是否必填 是否参与签名 参数说明     version 版本号 是 是 固定值：1.0.0   memberid 商户号 是 是 系统分配的商户编号，例如：10001   orderid 商户订单号 是 是 商户订单号，长度32个字符以内，只许包含大小写英文字母、数字和下划线（_）   amount 订单金额 是 是 交易订单金额，单位：分   orderdatetime 订单提交时间 是 是 格式：YYYY-mm-dd H:i:s 例如：2020-02-02 20:20:20   paytype 通道编码 是 是 联系客户获取   notifyurl 异步回调地址 是 是 支付成功后系统异步回调商户的地址   callbackurl 同步跳转地址 否 否 支付成功后系统同步跳转商户的地址   extend 扩展字段 否 否 异步回调/同步跳转时会原值返回   nome 姓名 否 否 如果为巴西通道时必填   cpf CPF或CNPJ 否 否 如果为巴西通道时必填   signmethod 签名类型 是 是 固定值: md5   sign md5签名 是 否 请看签名算法    交易请求Demo     PHP  PHP Demo    &amp;lt;?</description>
+    </item>
+    
+    <item>
+      <title>代付文档</title>
+      <link>https://getsilver.github.io/bitpay/post/Pay/</link>
+      <pubDate>Fri, 18 Sep 2020 14:53:54 +0800</pubDate>
+      
+      <guid>https://getsilver.github.io/bitpay/post/Pay/</guid>
+      <description>请求URL: https://www.bitpay.com/daifu/Transfer/index
+  请求方式： POST
+Content-Type: application/json
+     参数名 必填 签名 描述     memberid 是 是 商户号   orderid 是 是 商户订单号   amount 是 是 订单金额，单位 元   orderdatetime 是 是 订单提交时间，格式：YYYY-mm-dd HH:ii:ss 例如：2020-02-02 20:20:20   currency 是 是 币种 （巴西）brl、（墨西哥）mxn、（印度）inr 、（南非）zar   notifyurl 是 是 回调通知地址   data 是 是 代付信息数据，具体见最下面附录   remarks 否 否 扩展字段   sign 否 否 md5签名，签名算法在下面：      签名算法:</description>
+    </item>
+    
+    <item>
+      <title>签名算法</title>
+      <link>https://getsilver.github.io/bitpay/post/Signature/</link>
+      <pubDate>Wed, 16 Sep 2020 10:08:46 +0000</pubDate>
+      
+      <guid>https://getsilver.github.io/bitpay/post/Signature/</guid>
+      <description>签名生成的通用步骤：
+ 设所有发送或者接收到的数据为集合M，将集合M内的参数按照参数名ASCII码从小到大排序（字典序），使用URL键值对的格式（即key1=value1&amp;amp;key2=value2…）拼接成字符串 stringA。 在stringA最后拼接上key得到stringSign字符串，并对stringSign进行MD5运算，再将得到的字符串所有字符转换为大写。  交易提交时签名Demo     PHP  PHP Demo    &amp;lt;?php $ArrayField = [ &amp;#39;version&amp;#39; =&amp;gt; &amp;#39;1.0.0&amp;#39;, &amp;#39;memberid&amp;#39; =&amp;gt; &amp;#39;10001&amp;#39;, &amp;#39;orderid&amp;#39; =&amp;gt; &amp;#34;1000120200202202020&amp;#34;, &amp;#39;amount&amp;#39; =&amp;gt; &amp;#39;100&amp;#39;, &amp;#39;orderdatetime&amp;#39; =&amp;gt; &amp;#34;&amp;#34;, &amp;#39;notifyurl&amp;#39; =&amp;gt; &amp;#39;http://xxx.xxx.com/notifyurl.php&amp;#39;, &amp;#39;paytype&amp;#39; =&amp;gt; &amp;#39;WXGZH&amp;#39;, &amp;#39;signmethod&amp;#39; =&amp;gt; &amp;#39;md5&amp;#39;, ]; ksort($ArrayField); //按照参数名ASCII码从小到大排序  $md5key = &amp;#39;2JXQBG13TAUNKRYVME&amp;#39;; //md5密钥  $stringA = &amp;#34;&amp;#34;; foreach($ArrayField as $key =&amp;gt; $value){ $stringA .= $key.&amp;#34;=&amp;#34;.$value.&amp;#34;&amp;amp;&amp;#34;; } $stringA = substr($stringA,0,-1); //去掉最后一个 &amp;amp; 字符  $ArrayField[&amp;#34;sign&amp;#34;] = strtoupper(md5($stringA.</description>
+    </item>
+    
+    <item>
+      <title>查询文档</title>
+      <link>https://getsilver.github.io/bitpay/post/Inquiry/</link>
+      <pubDate>Wed, 16 Sep 2020 10:07:46 +0000</pubDate>
+      
+      <guid>https://getsilver.github.io/bitpay/post/Inquiry/</guid>
+      <description>请求地址： https://www.mercadosuperfast.com/Pay.html
+  请求类型： POST
+  请求参数：
+     变量名称 参数名称 是否必填 是否参与签名 参数说明     version 版本号 是 是 固定值：1.0.0   memberid 商户号 是 是 系统分配的商户编号，例如：10001   orderid 商户订单号 是 是 要查询的商户订单号   notifyurl 异步回调地址 是 是 支付成功后系统异步回调商户的地址   query 查询标识 是 否 固定值：query   signmethod 签名类型 是 是 固定值: md5   sign md5签名 是 否 请看签名算法    查询请求Demo     PHP  PHP Demo    &amp;lt;?</description>
+    </item>
+    
+  </channel>
+</rss>
